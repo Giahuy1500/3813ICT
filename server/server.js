@@ -7,7 +7,7 @@ var path = require('path')
 app.use(cors());
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(bodyParser.json())
-app.use(express.static(__dirname + "../dist/3813-ict-assignment"))
+app.use(express.static(__dirname + "../dist/3813-ict-assignment/"))
 
 var http = require('http').Server(app)
 
