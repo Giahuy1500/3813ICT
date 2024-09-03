@@ -10,9 +10,13 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './sidebar.component.css'
 })
 export class SidebarComponent {
-  username:string=""
-  role:string=""
+  username:any="" 
+  role:any=""
   constructor(private router:Router, httpClient: HttpClient){}
+  ngOnInit(){
+    this.username = sessionStorage.getItem('username')
+    this.role = sessionStorage.getItem('role')
+  }
   logout(){
     this.router.navigateByUrl('/login')
     sessionStorage.clear()

@@ -1,0 +1,17 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <h3>{{ group ? (group.id ? "Edit Group" : "Create Group") : "Group" }}</h3>
+    <form (ngSubmit)="onSubmit()">
+      <label for="name">Group Name:</label>
+      <input id="name" [(ngModel)]="group.name" name="name" required />
+
+      <label for="admin">Group Admin:</label>
+      <input id="admin" [(ngModel)]="group.adminName" name="admin" required />
+
+      <div class="modal-buttons">
+        <button type="submit">Save</button>
+        <button (click)="close()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

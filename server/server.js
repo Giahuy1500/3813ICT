@@ -15,6 +15,7 @@ var http = require('http').Server(app)
 
 
 app.post('/login', require('./router/postLogin'))
+app.get('/users', require('./router/getUsers'))
 http.listen(PORT,  ()=> {
     console.log(`Server running on port ${PORT}`);
 });

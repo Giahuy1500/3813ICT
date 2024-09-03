@@ -32,9 +32,8 @@ export class LoginComponent {
           sessionStorage.setItem("username", data.user.username)
           sessionStorage.setItem("role", data.user.role)
           sessionStorage.setItem("email", data.user.email)
-  
           sessionStorage.setItem("loginStatus", data.ok)
-          
+          this.router.navigateByUrl('/sidebar')
         }
       },
       (error) => {

@@ -16,6 +16,10 @@ export const routes: Routes = [
             {
                 path: 'user-management',
                 loadComponent: ()=> import('./component/user-management/user-management.component').then(m=>m.UserManagementComponent)
+            },
+            {
+                path: 'group-management',
+                loadComponent: ()=> import('./component/group-management/group-management.component').then(m=>m.GroupManagementComponent)
             }
         ]
     },

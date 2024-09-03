@@ -1,0 +1,28 @@
+<div class="group-mangament">
+  <div class="header">
+    <h2>Group Management</h2>
+    <button (click)="openAddGroupModal()">Create Group</button>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Group Name</th>
+        <th>Members Count</th>
+        <th>Group Admin</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let group of groups">
+        <td>{{ group.name }}</td>
+        <td>{{ group.membersCount }}</td>
+        <td>{{ group.adminName }}</td>
+        <td>
+          <button (click)="openEditGroupModal(group)">Edit</button>
+          <button (click)="manageMembers(group)">Manage Members</button>
+          <button (click)="deleteGroup(group.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
