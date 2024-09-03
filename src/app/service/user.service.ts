@@ -15,4 +15,7 @@ export class UserService {
   getAllUser(){
     return this.httpClient.get(BACK_ENDURL + '/users', httpOptions);
   }
+  createUser(userObj:any){
+    return this.httpClient.post(BACK_ENDURL + '/createUser',userObj ,httpOptions)
+  }
 }

@@ -21,10 +21,11 @@
         <td>{{ user.status }}</td>
         <td>
           <button (click)="openEditUserModal(user)">Edit</button>
-          <button (click)="deleteUser(user.id)">Delete</button>
+          <button (click)="deleteUser(user.username)">Delete</button>
           <button (click)="viewUser(user)">View</button>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+<app-add-member-modal></app-add-member-modal>
