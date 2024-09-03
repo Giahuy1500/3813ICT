@@ -1,1 +1,69 @@
-<p>add-member-modal works!</p>
+<div #modal class="modal" tabindex="-1" role="dialog">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">User form</h5>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+        (click)="closeModal()"
+      >
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="recipient-name" class="col-form-label">Username:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            [(ngModel)]="username"
+          />
+        </div>
+        <div class="form-group">
+          <label for="email" class="col-form-label">Email:</label>
+          <input
+            type="email"
+            class="form-control"
+            name="email"
+            [(ngModel)]="email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="role" class="col-form-label">Role:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="role"
+            [(ngModel)]="role"
+          />
+        </div>
+        <div class="form-group">
+          <label for="password" class="col-form-label">Password:</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            [(ngModel)]="password"
+          />
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="onSubmit()">
+        Save changes
+      </button>
+      <button
+        (click)="closeModal()"
+        type="button"
+        class="btn btn-secondary"
+        data-dismiss="modal"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+</div>
