@@ -1,5 +1,8 @@
-{
-    "username": "super",
-    "password": "123",
-    "role": "superadmin"
-}
+[
+    {
+      "username": "super",
+      "password": "123",
+      "role": "superadmin"
+    }
+  ]
+  

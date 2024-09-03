@@ -1,3 +1,5 @@
+const PORT = 3030;
+
 var cors = require('cors');
 var express = require('express'); // import express.js
 var app = express();
@@ -12,4 +14,7 @@ app.use(express.static(__dirname + "../dist/3813-ict-assignment/"))
 var http = require('http').Server(app)
 
 
-
+app.post('/login', require('./router/postLogin'))
+http.listen(PORT,  ()=> {
+    console.log(`Server running on port ${PORT}`);
+});
