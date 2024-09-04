@@ -9,5 +9,15 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './group.component.css'
 })
 export class GroupComponent {
- 
+  messages:any=""
+  newMessage:any=""
+  groups:any= [
+    { initial: 'S' },
+    { initial: 'A' },
+    { initial: 'B' }
+  ]
+  selectGroup(group:any){
+
+  }
+  sendMessage(){}
 }

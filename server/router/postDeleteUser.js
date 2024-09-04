@@ -2,7 +2,6 @@ var fs = require('fs');
 
 module.exports = function(req, res) {
     let usernameToDelete = req.body.username;
-    
     fs.readFile('./data/users.json', 'utf-8', function(err, data) {
         if (err) throw err;
         

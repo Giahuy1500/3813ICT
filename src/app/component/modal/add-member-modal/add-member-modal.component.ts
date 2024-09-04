@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, FormsModule } from '@angular/forms';
 import { UserService } from '../../../service/user.service';
+import { UserManagementComponent } from '../../user-management/user-management.component';
 @Component({
   selector: 'app-add-member-modal',
   standalone: true,
@@ -16,7 +17,7 @@ export class AddMemberModalComponent {
   role:any=""
   email:any=""
   password:any=""
-  constructor(private userService:UserService){}
+  constructor(private userService:UserService, private userManagementComponent:UserManagementComponent){}
   ngAfterViewInit(){
   
   }
@@ -30,12 +31,13 @@ export class AddMemberModalComponent {
     modalElement.style.display = 'none';
   }
   onSubmit(){
-    let userObj = {"username": this.username, "role": this.role, "email":this.email}
+    let userObj = {"username": this.username, "role": this.role, "email":this.email, "password":this.password}
     this.userService.createUser(userObj)
     .subscribe((data:any)=>{
+      this.closeModal()
+      this.userManagementComponent.loadAllUsers();
       console.log(data)
     })
     console.log(userObj)
-    this.closeModal()
   }
 }

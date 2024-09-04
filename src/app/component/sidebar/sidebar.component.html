@@ -10,11 +10,11 @@
           <i class="icon-home"></i>
           <span>Dashboard</span>
         </li>
-        <li>
+        <li *ngIf="role === 'superadmin'">
           <i class="icon-home"></i>
           <span><a routerLink="user-management">User management</a></span>
         </li>
-        <li>
+        <li *ngIf="role === 'superadmin' || role === 'admin'">
           <i class="icon-home"></i>
           <span><a routerLink="group-management">Group management</a></span>
         </li>

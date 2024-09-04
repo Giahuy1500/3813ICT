@@ -15,7 +15,26 @@ export class UserService {
   getAllUser(){
     return this.httpClient.get(BACK_ENDURL + '/users', httpOptions);
   }
+  getAllChannels(groupObj:any){
+    return this.httpClient.post(BACK_ENDURL + '/channels',groupObj, httpOptions);
+  }
+  getAllGroup(){
+    return this.httpClient.get(BACK_ENDURL + '/groups', httpOptions);
+  }
   createUser(userObj:any){
     return this.httpClient.post(BACK_ENDURL + '/createUser',userObj ,httpOptions)
+  }
+  createGroup(groupObj:any){
+    return this.httpClient.post(BACK_ENDURL + '/createGroup',groupObj ,httpOptions)
+  }
+  createChannel(channelObj:any){
+    
+    return this.httpClient.post(BACK_ENDURL + '/createChannel',channelObj ,httpOptions)
+  }
+  deleteUser(userObj:any){
+    return this.httpClient.post(BACK_ENDURL + '/deleteUser',userObj ,httpOptions)
+  }
+  deleteGroup(groupObj:any){
+    return this.httpClient.post(BACK_ENDURL + '/deleteGroup',groupObj ,httpOptions)
   }
 }

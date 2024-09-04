@@ -2,6 +2,7 @@ import { Component, ViewChild  } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../service/user.service';
+import { ChangeDetectorRef } from '@angular/core';
 import { AddMemberModalComponent } from '../modal/add-member-modal/add-member-modal.component';
 @Component({
   selector: 'app-user-management',
@@ -16,7 +17,7 @@ export class UserManagementComponent {
   selectedUser:any = {}
   isAddUSerModalOpen = false;
 
-  constructor(private uService:UserService){}
+  constructor(private uService:UserService, private cdr: ChangeDetectorRef){}
   ngOnInit(){
     this.loadAllUsers();
     
@@ -32,9 +33,10 @@ export class UserManagementComponent {
       }
     );
   }
-  openAddUserModal(){
+  async openAddUserModal(){
     if (this.addMemberModal) {
-      this.addMemberModal.openModal();
+      await this.addMemberModal.openModal();
+      this.loadAllUsers();
     } else {
       console.error('Modal component is not available');
     }
@@ -43,7 +45,13 @@ export class UserManagementComponent {
 
   }
   deleteUser(username:any){
-
+    let userObj = {"username": username}
+    
+    this.uService.deleteUser(userObj)
+    .subscribe((data:any)=>{
+      console.log(data)
+      this.loadAllUsers()
+    })
   }
   viewUser(username:any){
 

@@ -1,17 +1,42 @@
-<div class="modal-overlay">
+<div #modal class="modal" tabindex="-1" role="dialog">
   <div class="modal-content">
-    <h3>{{ group ? (group.id ? "Edit Group" : "Create Group") : "Group" }}</h3>
-    <form (ngSubmit)="onSubmit()">
-      <label for="name">Group Name:</label>
-      <input id="name" [(ngModel)]="group.name" name="name" required />
-
-      <label for="admin">Group Admin:</label>
-      <input id="admin" [(ngModel)]="group.adminName" name="admin" required />
-
-      <div class="modal-buttons">
-        <button type="submit">Save</button>
-        <button (click)="close()">Cancel</button>
-      </div>
-    </form>
+    <div class="modal-header">
+      <h5 class="modal-title">Customize your group</h5>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+        (click)="closeModal()"
+      >
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="group-name" class="col-form-label">Group name:</label>
+          <input
+            type="text"
+            class="form-control"
+            name="groupname"
+            [(ngModel)]="groupname"
+          />
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" (click)="onSubmit()">
+        Save changes
+      </button>
+      <button
+        (click)="closeModal()"
+        type="button"
+        class="btn btn-secondary"
+        data-dismiss="modal"
+      >
+        Close
+      </button>
+    </div>
   </div>
 </div>

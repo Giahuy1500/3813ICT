@@ -16,8 +16,14 @@ var http = require('http').Server(app)
 
 app.post('/login', require('./router/postLogin'))
 app.post('/createUser', require('./router/postCreateUser'))
+app.post('/createGroup', require('./router/postCreateGroup'))
+app.post('/createChannel', require('./router/postCreateChannel'))
+app.post('/deleteGroup', require('./router/postDeleteGroup'))
 app.post('/deleteUser', require('./router/postDeleteUser'))
 app.get('/users', require('./router/getUsers'))
+app.get('/groups', require('./router/getGroups'))
+app.post('/channels', require('./router/postChannels'))
+app.get('/assignUser', require('./router/postAssignUser'))
 http.listen(PORT,  ()=> {
     console.log(`Server running on port ${PORT}`);
 });

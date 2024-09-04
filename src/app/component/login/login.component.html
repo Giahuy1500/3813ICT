@@ -1,29 +1,46 @@
-<section>
-    <div class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-md-6 col-lg-4">
-                <div class="card shadow-lg">
-                    <div class="card-body p-4">
-                        <h2 class="fw-bold mb-2 text-uppercase text-center">Login</h2>
-                        <p class="text-center mb-5">Please enter your login and password!</p>
-                        <form>
-                            <!-- Email input -->
-                            <div class="form-outline mb-4">
-                                <input type="email" placeholder="Email" name="email" class="form-control" [(ngModel)]="username" />
-                            </div>
-                            <!-- Password input -->
-                            <div class="form-outline mb-4">
-                                <input type="password" placeholder="Password" name="password" class="form-control" [(ngModel)]="password" />
-                            </div>
-                            <!-- Submit button -->
-                            <button type="button" class="btn btn-primary btn-block mb-4" (click)="handleSubmit()">Sign in</button>
-                        </form>
-                        <div class="text-center">
-                            <a href="#!" class="text-decoration-none">Forgot password?</a>
-                        </div>
-                    </div>
-                </div>
+<section class="vh-100" style="background-color: #f4f5f7">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-2-strong" style="border-radius: 1rem">
+          <div class="card-body p-5 text-center">
+            <h3 class="mb-5">Sign in</h3>
+            <form>
+              <!-- Email input -->
+              <div class="form-outline mb-4">
+                <input
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  class="form-control form-control-lg"
+                  [(ngModel)]="username"
+                />
+              </div>
+              <!-- Password input -->
+              <div class="form-outline mb-4">
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="password"
+                  class="form-control form-control-lg"
+                  [(ngModel)]="password"
+                />
+              </div>
+              <!-- Submit button -->
+              <button
+                type="button"
+                class="btn btn-primary btn-lg btn-block"
+                (click)="handleSubmit()"
+              >
+                Sign in
+              </button>
+            </form>
+            <div class="text-center mt-4">
+              <a href="#!" class="text-decoration-none">Forgot password?</a>
             </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </section>

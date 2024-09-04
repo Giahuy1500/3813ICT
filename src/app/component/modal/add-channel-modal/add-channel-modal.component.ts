@@ -1,28 +1,25 @@
-import { CommonModule } from '@angular/common';
-import { Component,ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../../../service/user.service';
 import { GroupManagementComponent } from '../../group-management/group-management.component';
 @Component({
-  selector: 'app-group-modal',
+  selector: 'app-add-channel-modal',
   standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './group-modal.component.html',
-  styleUrl: './group-modal.component.css'
+  imports: [FormsModule],
+  templateUrl: './add-channel-modal.component.html',
+  styleUrl: './add-channel-modal.component.css'
 })
-export class GroupModalComponent {
+export class AddChannelModalComponent {
   @ViewChild('modal', { static: false }) modal: any;
-  groupname:any=""
-  role:any=""
-  email:any=""
-  password:any=""
-  constructor(private userService:UserService, private groupManagement: GroupManagementComponent){}
-  ngAfterViewInit(){
-  
-  }
-  openModal() {
+
+  channelname:any=""
+  group:any=""
+  constructor(private userService:UserService, private groupManagement:GroupManagementComponent){}
+
+  openModal(group:any) {
     const modalElement = this.modal.nativeElement;
     modalElement.style.display = 'flex';
+    this.group = group
   }
 
   closeModal() {
@@ -30,9 +27,8 @@ export class GroupModalComponent {
     modalElement.style.display = 'none';
   }
   onSubmit(){
-    let groupObj = {"name": this.groupname}
-    
-    this.userService.createGroup(groupObj)
+    let channelObj = {"name": this.channelname, "groupName": this.group.name}
+    this.userService.createChannel(channelObj)
     .subscribe((data:any)=>{
       this.closeModal()
       this.groupManagement.loadAllGroup()

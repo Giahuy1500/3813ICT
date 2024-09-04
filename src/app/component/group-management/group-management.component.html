@@ -1,7 +1,7 @@
 <div class="group-mangament">
   <div class="header">
     <h2>Group Management</h2>
-    <button (click)="openAddGroupModal()">Create Group</button>
+    <button (click)="createGroup()">Create Group</button>
   </div>
   <table>
     <thead>
@@ -18,11 +18,15 @@
         <td>{{ group.membersCount }}</td>
         <td>{{ group.adminName }}</td>
         <td>
-          <button (click)="openEditGroupModal(group)">Edit</button>
+          <button (click)="openEditGroupModal(group)">Create channel</button>
           <button (click)="manageMembers(group)">Manage Members</button>
-          <button (click)="deleteGroup(group.id)">Delete</button>
+          <button (click)="deleteGroup(group.name)">Delete</button>
         </td>
       </tr>
     </tbody>
   </table>
 </div>
+
+<app-group-modal></app-group-modal>
+<app-manage-member-modal></app-manage-member-modal>
+<app-add-channel-modal></app-add-channel-modal>
