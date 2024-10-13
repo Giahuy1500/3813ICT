@@ -1,22 +1,75 @@
-<div class="main-layout">
-  <aside class="group-panel">
-    <div
-      class="group"
-      *ngFor="let group of groups"
-      (click)="selectGroup(group)"
+<div class="container">
+  <!-- Group Selection -->
+  <div class="group-select">
+    <label for="group">Select Group:</label>
+    <select
+      id="group"
+      [(ngModel)]="selectedGroup"
+      (change)="onGroupChange(selectedGroup)"
     >
-      <span>{{ group.initial }}</span>
-    </div>
-  </aside>
-  <div class="chat-box">
-    <div class="messages">
-      <div *ngFor="let message of messages">
-        <span>{{ message.user }}: </span>{{ message.text }}
-      </div>
-    </div>
-    <div class="message-input">
-      <input [(ngModel)]="newMessage" placeholder="Type a message..." />
-      <button (click)="sendMessage()">Send</button>
+      <option value="">--Select Group--</option>
+      <option *ngFor="let group of groups" [ngValue]="group">
+        {{ group.name }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Channel Selection -->
+  <div class="channel-select">
+    <label for="channels">Select Channels:</label>
+    <select id="channels" multiple [(ngModel)]="selectedChannels">
+      <option *ngFor="let channel of channels" [value]="channel">
+        {{ channel.name }}
+      </option>
+    </select>
+  </div>
+
+  <!-- Submit Button -->
+  <button class="submit-btn" (click)="joinChannel()">Join Channel</button>
+  <button class="submit-btn" (click)="leaveChannel()">Leave Channel</button>
+</div>
+
+<div class="chat-window">
+  <div class="messages">
+    <div *ngFor="let message of messages">
+      <strong>{{ message.user }}:</strong>
+      <span *ngIf="message.text">{{ message.text }}</span>
+      <span *ngIf="message.imageUrl">
+        <img [src]="message.imageUrl" alt="Image" class="chat-image" />
+      </span>
+      <small>({{ message.timestamp | date : "shortTime" }})</small>
     </div>
   </div>
+
+  <!-- New buttons for video chat and meeting -->
+  <div class="chat-controls">
+    <button (click)="startVideoChat()" *ngIf="!isVideoChatActive">
+      Start Video Chat
+    </button>
+    <button (click)="stopVideoChat()" *ngIf="isVideoChatActive">
+      Stop Video Chat
+    </button>
+    <button (click)="startMeeting()" *ngIf="!isMeetingActive">
+      Start Meeting
+    </button>
+    <button (click)="stopMeeting()" *ngIf="isMeetingActive">
+      Stop Meeting
+    </button>
+  </div>
+
+  <div class="message-input">
+    <input [(ngModel)]="messageInput" placeholder="Type your message" />
+    <input type="file" (change)="onFileSelected($event)" />
+    <button (click)="sendMessage()" class="btn btn-primary">Send</button>
+  </div>
+  <div>
+    <div class="video-container"></div>
+    <video #localVideo autoplay></video>
+  </div>
+</div>
+
+<div>
+  <div class="video-container"></div>
+  <video #localVideo autoplay></video>
+  <video #remoteVideo autoplay></video>
 </div>

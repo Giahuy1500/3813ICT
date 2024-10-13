@@ -23,20 +23,6 @@
             [(ngModel)]="username"
           />
         </div>
-        <div class="form-group">
-          <label for="channel" class="col-form-label">Channel:</label>
-          <select
-            class="form-control"
-            name="channel"
-            [(ngModel)]="channel"
-            (change)="onChannelChange()"
-          >
-            <option value="" disabled selected>Select a channel</option>
-            <option *ngFor="let channel of channels">
-              {{ channel.name }}
-            </option>
-          </select>
-        </div>
       </form>
     </div>
     <div class="modal-footer">

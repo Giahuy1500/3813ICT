@@ -1,39 +1,44 @@
-import { Component, ViewChild  } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { UserService } from '../../service/user.service';
-import { ChangeDetectorRef } from '@angular/core';
 import { AddMemberModalComponent } from '../modal/add-member-modal/add-member-modal.component';
+import { EditUserModalComponent } from '../modal/edit-user-modal/edit-user-modal.component';
 @Component({
   selector: 'app-user-management',
   standalone: true,
-  imports: [FormsModule, CommonModule, AddMemberModalComponent],
+  imports: [
+    FormsModule,
+    CommonModule,
+    AddMemberModalComponent,
+    EditUserModalComponent,
+  ],
   templateUrl: './user-management.component.html',
-  styleUrl: './user-management.component.css'
+  styleUrl: './user-management.component.css',
 })
 export class UserManagementComponent {
-  @ViewChild(AddMemberModalComponent, {static:false}) addMemberModal: any;
+  @ViewChild(AddMemberModalComponent, { static: false }) addMemberModal: any;
+  @ViewChild(EditUserModalComponent, { static: false }) editMemberModal: any;
   users: any[] = [];
-  selectedUser:any = {}
+  selectedUser: any = {};
   isAddUSerModalOpen = false;
 
-  constructor(private uService:UserService, private cdr: ChangeDetectorRef){}
-  ngOnInit(){
+  constructor(private uService: UserService) {}
+  ngOnInit() {
     this.loadAllUsers();
-    
   }
-  loadAllUsers(){
+  loadAllUsers() {
     this.uService.getAllUser().subscribe(
       (data: any) => {
-        this.users = data
+        this.users = data;
       },
       (error) => {
         console.error('Error:', error);
-        alert("An error occurred: " + error.message);
+        alert('An error occurred: ' + error.message);
       }
     );
   }
-  async openAddUserModal(){
+  async openAddUserModal() {
     if (this.addMemberModal) {
       await this.addMemberModal.openModal();
       this.loadAllUsers();
@@ -41,19 +46,21 @@ export class UserManagementComponent {
       console.error('Modal component is not available');
     }
   }
-  openEditUserModal(user:any){
+  async openEditUserModal(user: any) {
+    if (this.editMemberModal) {
+      await this.editMemberModal.openModal(user);
+      this.loadAllUsers();
+    } else {
+      console.error('Modal component is not available');
+    }
+  }
+  deleteUser(username: any) {
+    let userObj = { username: username };
 
+    this.uService.deleteUser(userObj).subscribe((data: any) => {
+      console.log(data);
+      this.loadAllUsers();
+    });
   }
-  deleteUser(username:any){
-    let userObj = {"username": username}
-    
-    this.uService.deleteUser(userObj)
-    .subscribe((data:any)=>{
-      console.log(data)
-      this.loadAllUsers()
-    })
-  }
-  viewUser(username:any){
-
-  }
+  viewUser(username: any) {}
 }
